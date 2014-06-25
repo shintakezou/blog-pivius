@@ -1,4 +1,10 @@
 #! /usr/bin/perl
+
+##
+## post proc of the output, e.g.
+## convert -background none -resize 300x300 -density 300 file.svg  file.png
+##
+
 use strict;
 
 print <<EOT;
@@ -6,11 +12,14 @@ print <<EOT;
     <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
     "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
     <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
-         width="800px"
-         height="800px"
          viewBox="-120 -120 240 240">
 EOT
-;
+#          width="800px"
+#         height="800px"
+
+    ; # emacs indent gets confused...
+
+
 
 my %node;
 my @connect;
@@ -55,8 +64,8 @@ foreach my $n (keys %node) {
 	"stroke=\"none\" fill=\"$col\" fill-opacity=\"$op\" />\n";
 }
 
-#my ($px, $py, $pr) = split /\s+/, $area;
-#print "<circle cx=\"$px\" cy=\"$py\" r=\"$pr\" stroke=\"none\" fill=\"blue\" fill-opacity=\"0.2\" />";
+my ($px, $py, $pr) = split /\s+/, $area;
+print "<circle cx=\"$px\" cy=\"$py\" r=\"$pr\" stroke=\"none\" fill=\"red\" fill-opacity=\"0.2\" />";
 
 print "</svg>\n";
 
